@@ -1,0 +1,15 @@
+# Build output
+*.dll
+*.obj
+*.exp
+*.lib
+*.pdb
+*.o
+__pycache__/
+
+# Game files: Square Enix's code, never commit
+*.exe
+*.asm
+
+# Local logs
+*.log

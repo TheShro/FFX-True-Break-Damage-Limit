@@ -1,0 +1,22 @@
+name: build
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+      - name: Build ffx_true_bdl.dll (32-bit)
+        shell: cmd
+        working-directory: source
+        run: cl /nologo /LD /O2 /MT /W3 ffx_true_bdl.c /Fe:ffx_true_bdl.dll
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ffx_true_bdl
+          path: |
+            source/ffx_true_bdl.dll
+            modules/ffx_true_bdl.ini
